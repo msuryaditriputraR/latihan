@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+
+<body>
+    <form>
+        <label for="full-name">Full Name</label><br>
+        <input type="text" placeholder="Muh Suryadi Triputra Rahman" size="30" id="full-name" required> <br><br>
+        <label for="email">Email</label><br>
+        <input type="email" placeholder="msuryaditriputra@gmail.com" size="30" id="email"> <br><br>
+        <label for="wa">WA Number</label><br>
+        <input type="number" placeholder="+6281257024626" size="30" id="wa"><br><br>
+        <label for="gender">Gender</label><br>
+        <input type="radio" id="woman" name="gender">
+        <label for="woman">Woman</label>
+        <input type="radio" id="man" name="gender">
+        <label for="man">Man</label><br><br>
+        <label for="activity">Curren Activity</label><br>
+        <select id="activity">
+            <option value="programmer">Programmer</option>
+            <option value="students">Students</option>
+            <option value="freelancer" selected>Freelancer</option>
+        </select><br><br>
+        <label for="platform">What's Platform do you want</label><br>
+        <input type="checkbox" id="android" name="platform">
+        <label for="android">Android</label>
+        <input type="checkbox" id="cloud" name="platform">
+        <label for="cloud">Cloud</label>
+        <input type="checkbox" id="design" name="platform">
+        <label for="design">Design</label>
+        <input type="checkbox" id="web" name="platform">
+        <label for="web">Web</label><br></br>
+        <label for="message">Description</label> <br>
+        <textarea id="message" cols="50" rows="5"
+            placeholder="Please Describe your detail project here"></textarea><br><br>
+        <button type="submit">Hire Me</button>
+    </form>
+</body>
+
+</html>
