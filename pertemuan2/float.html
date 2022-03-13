@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layouting || Float</title>
+
+    <style>
+        .container {
+            width: 350px;
+            border: 1px solid black;
+            border-radius: 5px;
+            margin: 50px auto;
+            color: white;
+        }
+
+        header {
+            background-color: blueviolet;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        aside {
+            background-color: green;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            float: left;
+            width: 40%;
+        }
+
+        article {
+            width: 60%;
+            height: 75px;
+            float: right;
+            text-align: center;
+            line-height: 75px;
+        }
+
+        article:first-of-type {
+            background-color: aqua;
+        }
+
+        article:last-of-type {
+            background-color: orange;
+        }
+
+        footer {
+            clear: both;
+            height: 50px;
+            background-color: gray;
+            text-align: center;
+            line-height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>Header</header>
+        <aside>Aside</aside>
+        <article>Article 1</article>
+        <article>Article 2</article>
+        <footer>Footer</footer>
+    </div>
+</body>
+
+</html>
