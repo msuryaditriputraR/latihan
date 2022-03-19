@@ -27,20 +27,55 @@
 // console.log(typeof NaN);
 // console.log(Symbol(23) === Symbol(23));
 
-let date = 99;
-let day = "";
+// let date = 99;
+// let day = "";
 
-switch (date) {
-    case 0:
-        day = "Sunday";
-        break;
-    case 1:
-        day = "Monday";
-        break;
-    case 2:
-        day = "Tuesday";
-        break;
-    default:
-        day = "Days";
-        break;
+// switch (date) {
+//     case 0:
+//         day = "Sunday";
+//         break;
+//     case 1:
+//         day = "Monday";
+//         break;
+//     case 2:
+//         day = "Tuesday";
+//         break;
+//     default:
+//         day = "Days";
+//         break;
+// }
+
+// console.log(day);
+
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+let i = 6;
+
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+
+do {
+    console.log(i);
+    i++;
+} while (i < 5);
+
+const arr = [1, "mhs", true, 10, "contoh"];
+const string = "mahasiswa";
+
+for (const value of string) {
+    console.log(value);
+}
+
+const obj = {
+    nama: "dandi",
+    kelas: "PTIK A",
+    angkatan: 2017,
+};
+
+for (const key in obj) {
+    console.log(`${key} : ${obj[key]}`);
 }
