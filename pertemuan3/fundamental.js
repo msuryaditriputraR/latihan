@@ -99,8 +99,16 @@
 // })();
 
 // NOTE: Parameter dan Argumen
+// const myFunction = function (nama) {
+//     console.log("Hello ", nama);
+// };
+
+// myFunction("sule");
+
+// NOTE: RETURN
 const myFunction = function (nama) {
-    console.log("Hello ", nama);
+    return `hello ${nama}`;
 };
 
-myFunction("sule");
+// const hello = myFunction("sule");
+console.log(myFunction());
