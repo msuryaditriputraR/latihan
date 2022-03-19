@@ -26,3 +26,21 @@
 // console.log(typeof null);
 // console.log(typeof NaN);
 // console.log(Symbol(23) === Symbol(23));
+
+let date = 99;
+let day = "";
+
+switch (date) {
+    case 0:
+        day = "Sunday";
+        break;
+    case 1:
+        day = "Monday";
+        break;
+    case 2:
+        day = "Tuesday";
+        break;
+    default:
+        day = "Days";
+        break;
+}
