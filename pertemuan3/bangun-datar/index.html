@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitung Luas Bangun Title</title>
+
+    <style>
+        .hide {
+            display: none;
+        }
+
+        .hasil-bangun-datar {
+            background-color: salmon;
+        }
+
+        .lingkaran {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Menghitung Luas Bangun Datar</h1>
+    <p>Pilih Bangun Datar</p>
+
+    <form id="form-bangun-datar">
+        <input type="radio" id="persegi" name="bangun-datar">
+        <label for="persegi">Persegi</label> <br>
+        <input type="radio" id="persegi-panjang" name="bangun-datar">
+        <label for="persegi-panjang">Persegi Panjang</label> <br>
+        <input type="radio" id="lingkaran" name="bangun-datar">
+        <label for="lingkaran">Lingkaran</label><br><br>
+
+        <div class="persegi inputan hide">
+            <label for="sisi">Sisi</label><br>
+            <input type="number" id="sisi">
+        </div>
+
+        <div class="persegi-panjang inputan hide">
+            <label for="panjang">Panjang</label><br>
+            <input type="number" id="panjang"><br>
+            <label for="lebar">Lebar</label><br>
+            <input type="number" id="lebar">
+        </div>
+
+        <div class="lingkaran inputan hide">
+            <label for="jari-jari">Jari Jari</label><br>
+            <input type="number" id="jari-jari">
+        </div>
+
+        <br><br>
+        <button type="submit">Hitung Luas</button>
+    </form>
+
+    <br><br>
+    <div class="hasil">
+        <div class="hasil-bangun-datar"></div>
+        <p class="hasil-luas-bangun-datar"></p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
