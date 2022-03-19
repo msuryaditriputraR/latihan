@@ -97,3 +97,10 @@
 // (function () {
 //     console.log("Hello JS");
 // })();
+
+// NOTE: Parameter dan Argumen
+const myFunction = function (nama) {
+    console.log("Hello ", nama);
+};
+
+myFunction("sule");
