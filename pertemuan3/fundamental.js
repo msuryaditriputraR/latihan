@@ -47,35 +47,53 @@
 
 // console.log(day);
 
-for (let i = 0; i < 5; i++) {
-    console.log(i);
-}
+// for (let i = 0; i < 5; i++) {
+//     console.log(i);
+// }
 
-let i = 6;
+// let i = 6;
 
-while (i < 5) {
-    console.log(i);
-    i++;
-}
+// while (i < 5) {
+//     console.log(i);
+//     i++;
+// }
 
-do {
-    console.log(i);
-    i++;
-} while (i < 5);
+// do {
+//     console.log(i);
+//     i++;
+// } while (i < 5);
 
-const arr = [1, "mhs", true, 10, "contoh"];
-const string = "mahasiswa";
+// const arr = [1, "mhs", true, 10, "contoh"];
+// const string = "mahasiswa";
 
-for (const value of string) {
-    console.log(value);
-}
+// for (const value of string) {
+//     console.log(value);
+// }
 
-const obj = {
-    nama: "dandi",
-    kelas: "PTIK A",
-    angkatan: 2017,
-};
+// const obj = {
+//     nama: "dandi",
+//     kelas: "PTIK A",
+//     angkatan: 2017,
+// };
 
-for (const key in obj) {
-    console.log(`${key} : ${obj[key]}`);
-}
+// for (const key in obj) {
+//     console.log(`${key} : ${obj[key]}`);
+// }
+
+// NOTE: Function Declaration
+// function myFunction() {
+//     console.log("Hello JS");
+// }
+
+// NOTE: ANONYMOUS FUNCTION
+// const myFunction = function () {
+//     console.log("Hello JS");
+// };
+
+// NOTE: ARROW FUNCTION
+// const myFunction = () => console.log("Hello JS");
+
+// NOTE: Immediately Invoked Function Expression (IIFE)
+// (function () {
+//     console.log("Hello JS");
+// })();
