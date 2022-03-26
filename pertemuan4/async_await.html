@@ -35,8 +35,8 @@
             display: none;
         }
 
-        @media screen and (max-width: 500px){
-            .container{
+        @media screen and (max-width: 500px) {
+            .container {
                 grid-template-columns: 100%;
             }
         }
@@ -110,8 +110,6 @@
             ajax.send();
         }
 
-
-
         function selectProvinsi(data) {
             provinsi.innerHTML = createOptions(data);
         }
@@ -125,6 +123,7 @@
                 .finally(() => console.log("Request Kabupaten telah dijalankan"))
         })
 
+        // KABUPATEN
         function getDataKabupaten(idProvinsi) {
             const url = `https://emsifa.github.io/api-wilayah-indonesia/api/regencies/${idProvinsi}.json`
 
@@ -163,6 +162,7 @@
 
         })
 
+        // KECAMATAN
         function getDataKecamatan(idKabupaten) {
             const url = `https://emsifa.github.io/api-wilayah-indonesia/api/districts/${idKabupaten}.json`
 
@@ -182,7 +182,6 @@
             try {
                 const response = await getDataKelurahan(this.value);
                 const data = await response.json();
-
                 selectKelurahan(data);
             } catch (error) {
                 alertError();
@@ -192,14 +191,13 @@
 
         })
 
+        // KELURAHAN
         function getDataKelurahan(idKecamatan) {
             const url = `https://emsifa.github.io/api-wilayah-indonesia/api/villages/${idKecamatan}.json`;
-
             return fetch(url);
         }
 
         function selectKelurahan(data) {
-
             kelurahan.innerHTML = createOptions(data);
         }
     </script>
