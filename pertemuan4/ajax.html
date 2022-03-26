@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 80vw;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            gap: 1.5rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pilih Data Wilayah</h1>
+
+    <div class="container">
+        <div class="field">
+            <label for="provinsi">Provinsi</label>
+            <select name="provinsi" id="provinsi">
+                <option selected>Pilih Provinsi</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        const provinsi = document.getElementById("provinsi");
+
+        window.onload = getDataProvinsi(selectProvinsi, alertError);
+
+        function getDataProvinsi(callbackSuccess, callbackError) {
+            const url = "https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json";
+
+            const ajax = new XMLHttpRequest();
+
+            ajax.onload = function () {
+                if (ajax.status === 200) {
+                    const data = JSON.parse(ajax.responseText);
+                    callbackSuccess(data)
+                } else {
+                    callbackError();
+                }
+            }
+
+            ajax.open("GET", url);
+            ajax.send();
+        }
+
+        function alertError() {
+            alert('Maaf, Data tidak dapat diambil')
+        }
+
+        function selectProvinsi(data) {
+            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
+
+            provinsi.innerHTML = html
+        }
+    </script>
+</body>
+
+</html>
