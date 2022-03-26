@@ -34,6 +34,12 @@
         .hide {
             display: none;
         }
+
+        @media screen and (max-width: 500px){
+            .container{
+                grid-template-columns: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -68,6 +74,7 @@
     </div>
 
     <script>
+        // DOM SELECTOR
         const provinsi = document.getElementById("provinsi");
         const kabupaten = document.getElementById("kabupaten");
         const kecamatan = document.getElementById("kecamatan");
@@ -75,6 +82,16 @@
 
         window.onload = getDataProvinsi(selectProvinsi, alertError);
 
+        // HELPER
+        function alertError() {
+            alert('Maaf, Data tidak dapat diambil')
+        }
+
+        function createOptions(data) {
+            return data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
+        }
+
+        // PROVINSI
         function getDataProvinsi(callbackSuccess, callbackError) {
             const url = "https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json";
 
@@ -93,14 +110,10 @@
             ajax.send();
         }
 
-        function alertError() {
-            alert('Maaf, Data tidak dapat diambil')
-        }
+
 
         function selectProvinsi(data) {
-            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
-
-            provinsi.innerHTML = html
+            provinsi.innerHTML = createOptions(data);
         }
 
         provinsi.addEventListener("change", function () {
@@ -135,9 +148,8 @@
         }
 
         function selectKabupaten(data) {
-            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
 
-            kabupaten.innerHTML = html
+            kabupaten.innerHTML = createOptions(data);
         }
 
         kabupaten.addEventListener("change", function () {
@@ -160,9 +172,8 @@
         }
 
         function selectKecamatan(data) {
-            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
 
-            kecamatan.innerHTML = html
+            kecamatan.innerHTML = createOptions(data);
         }
 
         kecamatan.addEventListener("change", async function () {
@@ -188,9 +199,8 @@
         }
 
         function selectKelurahan(data) {
-            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
 
-            kelurahan.innerHTML = html
+            kelurahan.innerHTML = createOptions(data);
         }
     </script>
 </body>
