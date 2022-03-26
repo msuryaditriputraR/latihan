@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Await</title>
+
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            width: 80vw;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            gap: 1.5rem;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .field label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Pilih Data Wilayah</h1>
+
+    <div class="container">
+        <div class="field">
+            <label for="provinsi">Provinsi</label>
+            <select name="provinsi" id="provinsi">
+                <option selected>Pilih Provinsi</option>
+            </select>
+        </div>
+        <div class="field hide">
+            <label for="kabupaten">Kabupaten</label>
+            <select name="kabupaten" id="kabupaten">
+                <option selected>Pilih Kabupaten</option>
+            </select>
+        </div>
+        <div class="field hide">
+            <label for="kecamatan">Kecamatan</label>
+            <select name="kecamatan" id="kecamatan">
+                <option selected>Pilih Kecamatan</option>
+            </select>
+        </div>
+        <div class="field hide">
+            <label for="kelurahan">Kelurahan</label>
+            <select name="kelurahan" id="kelurahan">
+                <option selected>Pilih Kelurahan</option>
+            </select>
+        </div>
+    </div>
+
+    <script>
+        const provinsi = document.getElementById("provinsi");
+        const kabupaten = document.getElementById("kabupaten");
+        const kecamatan = document.getElementById("kecamatan");
+        const kelurahan = document.getElementById("kelurahan");
+
+        window.onload = getDataProvinsi(selectProvinsi, alertError);
+
+        function getDataProvinsi(callbackSuccess, callbackError) {
+            const url = "https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json";
+
+            const ajax = new XMLHttpRequest();
+
+            ajax.onload = function () {
+                if (ajax.status === 200) {
+                    const data = JSON.parse(ajax.responseText);
+                    callbackSuccess(data)
+                } else {
+                    callbackError();
+                }
+            }
+
+            ajax.open("GET", url);
+            ajax.send();
+        }
+
+        function alertError() {
+            alert('Maaf, Data tidak dapat diambil')
+        }
+
+        function selectProvinsi(data) {
+            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
+
+            provinsi.innerHTML = html
+        }
+
+        provinsi.addEventListener("change", function () {
+            kabupaten.parentElement.classList.remove("hide");
+
+            getDataKabupaten(this.value)
+                .then(data => selectKabupaten(data))
+                .catch(() => alertError())
+                .finally(() => console.log("Request Kabupaten telah dijalankan"))
+        })
+
+        function getDataKabupaten(idProvinsi) {
+            const url = `https://emsifa.github.io/api-wilayah-indonesia/api/regencies/${idProvinsi}.json`
+
+            const promise = new Promise((resolve, reject) => {
+                const ajax = new XMLHttpRequest();
+
+                ajax.onload = function () {
+                    if (ajax.status === 200) {
+                        const data = JSON.parse(ajax.responseText);
+                        resolve(data)
+                    } else {
+                        reject();
+                    }
+                }
+
+                ajax.open("GET", url);
+                ajax.send();
+            })
+
+            return promise;
+        }
+
+        function selectKabupaten(data) {
+            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
+
+            kabupaten.innerHTML = html
+        }
+
+        kabupaten.addEventListener("change", function () {
+            kecamatan.parentElement.classList.remove('hide');
+
+            getDataKecamatan(this.value)
+                .then(response => response.json())
+                .then(data => selectKecamatan(data))
+                .catch(() => alertError())
+                .finally(() => console.log("Request Kecamatan telah dijalankan"))
+
+        })
+
+        function getDataKecamatan(idKabupaten) {
+            const url = `https://emsifa.github.io/api-wilayah-indonesia/api/districts/${idKabupaten}.json`
+
+            return fetch(url, {
+                method: "GET"
+            });
+        }
+
+        function selectKecamatan(data) {
+            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
+
+            kecamatan.innerHTML = html
+        }
+
+        kecamatan.addEventListener("change", async function () {
+            kelurahan.parentElement.classList.remove('hide');
+
+            try {
+                const response = await getDataKelurahan(this.value);
+                const data = await response.json();
+
+                selectKelurahan(data);
+            } catch (error) {
+                alertError();
+            } finally {
+                console.log("Request Kelurahan telah dijalankan");
+            }
+
+        })
+
+        function getDataKelurahan(idKecamatan) {
+            const url = `https://emsifa.github.io/api-wilayah-indonesia/api/villages/${idKecamatan}.json`;
+
+            return fetch(url);
+        }
+
+        function selectKelurahan(data) {
+            const html = data.map((d) => `<option value=${d.id}>${d.name}</option>`).join('');
+
+            kelurahan.innerHTML = html
+        }
+    </script>
+</body>
+
+</html>
